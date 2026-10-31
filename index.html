@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Early Theme Detection to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('bevin_portfolio_theme');
+        var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Primary Meta Tags -->
+  <title>BEVIN JOY G | Pharmaceutical Technology, AI & Drug Discovery</title>
+  <meta name="title" content="BEVIN JOY G | Pharmaceutical Technology, AI & Drug Discovery">
+  <meta name="description" content="Personal portfolio of Bevin Joy G - 3rd-year B.Tech Pharmaceutical Technology student exploring AI, Drug Discovery, Bioinformatics, SwissADME, and Pharmacovigilance.">
+  <meta name="keywords" content="Bevin Joy G, Pharmaceutical Technology, AI Drug Discovery, Bioinformatics, SwissADME, Pharmacovigilance, Molecular Docking, Lipinski Rule of Five, Anna University">
+  <meta name="author" content="Bevin Joy G">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bevinjoy.vercel.app/">
+  <meta property="og:title" content="BEVIN JOY G | Pharmaceutical Technology, AI & Drug Discovery">
+  <meta property="og:description" content="Exploring the intersection of Artificial Intelligence, Pharmaceutical Technology, and Drug Discovery.">
+  <meta property="og:image" content="assets/images/bevin_profile.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://bevinjoy.vercel.app/">
+  <meta property="twitter:title" content="BEVIN JOY G | Pharmaceutical Technology, AI & Drug Discovery">
+  <meta property="twitter:description" content="Exploring the intersection of Artificial Intelligence, Pharmaceutical Technology, and Drug Discovery.">
+  <meta property="twitter:image" content="assets/images/bevin_profile.png">
+
+  <!-- Favicon (SVG Crown/Molecule) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23050811' stroke='%23d4af37' stroke-width='4'/%3E%3Ctext x='50%25' y='56%25' font-family='serif' font-weight='bold' font-size='38' fill='%23d4af37' text-anchor='middle' dominant-baseline='middle'%3EBJ%3C/text%3E%3C/svg%3E">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=6.0">
+
+  <!-- Schema.org Person JSON-LD for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bevin Joy G",
+    "jobTitle": "Pharmaceutical Technology Researcher & AI Developer",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Shree Venkateshwara Hi-Tech Engineering College, Anna University"
+    },
+    "email": "bevinjoy1019@gmail.com",
+    "telephone": "+919342773656",
+    "url": "https://bevinjoy.vercel.app/",
+    "sameAs": [
+      "https://linkedin.com/in/bevin-joy-79ab61335/",
+      "https://github.com/bevinjoy84-pixel"
+    ],
+    "knowsAbout": [
+      "Pharmaceutical Technology",
+      "Artificial Intelligence in Drug Discovery",
+      "Bioinformatics",
+      "Pharmacovigilance",
+      "SwissADME",
+      "Molecular Docking",
+      "Lipinski's Rule of Five"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CUSTOM ANIMATED LOADING SCREEN
+       ========================================================================== -->
+  <div id="preloader" class="preloader">
+    <div class="preloader-emblem">
+      <div class="preloader-orbit"></div>
+      <div class="preloader-orbit-inner"></div>
+      <span class="preloader-monogram">BJG</span>
+    </div>
+    <div class="preloader-text">BEVIN JOY G</div>
+    <div class="preloader-bar">
+      <div class="preloader-progress"></div>
+    </div>
+  </div>
+
+  <!-- Background Ambient Glow & Interactive Molecular Particle Canvas -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="page-wrapper">
+
+    <!-- ==========================================================================
+         NAVIGATION BAR WITH THEME SWITCHER
+         ========================================================================== -->
+    <header class="navbar" id="navbar">
+      <div class="container nav-container">
+        <a href="#hero" class="nav-brand" aria-label="Bevin Joy G Home">
+          <span class="brand-poster-name">BEVIN JOY</span>
+        </a>
+
+        <!-- Right Side Nav Group -->
+        <div class="nav-right-group">
+          <!-- Sleek Minimalist Pill Switch Matching Reference Image -->
+          <button id="theme-toggle" class="theme-pill-toggle" aria-label="Toggle between Royal Dark and Royal White theme" title="Toggle Theme">
+            <span class="theme-pill-thumb"></span>
+            <span class="theme-label-text sr-only">Dark Theme</span>
+          </button>
+
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a href="assets/Bevin_Joy_Resume.pdf" class="nav-cta-btn" download="Bevin_Joy_G_Resume.pdf" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Resume</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ==========================================================================
+           1. HERO SECTION (CINEMATIC POSTER - MATCHING REFERENCE IMAGE)
+           ========================================================================== -->
+      <section id="hero" class="hero-poster-section">
+        <!-- Radial Backlight Rim Behind Subject -->
+        <div class="poster-spotlight"></div>
+
+        <!-- Giant Typography Layer Behind Subject -->
+        <div class="poster-giant-wrap" aria-hidden="true">
+          <h1 class="poster-giant-title">BEVIN JOY</h1>
+        </div>
+
+        <!-- Authentic Cutout Portrait in Front of Giant Title -->
+        <div class="poster-subject-wrap">
+          <img src="assets/images/bevin_cutout.png" alt="BEVIN JOY G - B.Tech Pharmaceutical Technology &amp; AI Researcher" class="poster-subject-img">
+        </div>
+
+        <!-- Flanking Editorial Meta (Matching Reference: Left & Right) -->
+        <div class="poster-flank poster-flank-left">
+          <div class="poster-flank-title">B.Tech Pharmaceutical Technology</div>
+          <div class="poster-flank-sub">AI &bull; Drug Discovery &bull; Bioinformatics</div>
+          <div class="poster-typing-wrap">
+            <div class="typing-container">
+              <span class="typing-prefix" aria-hidden="true">✦ </span>
+              <span id="typing-text">Artificial Intelligence &amp; Pharmaceutical Research</span>
+              <span class="typing-cursor" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-flank poster-flank-right">
+          <div class="poster-flank-title">Presented By: Bevin Joy G</div>
+          <div class="poster-flank-sub">Anna University &bull; 2024–2028</div>
+        </div>
+
+        <!-- Bottom Row: Social Icons (Left), Action CTA (Center), Handle (Right) -->
+        <div class="poster-bottom-row">
+          <div class="poster-bottom-left">
+            <div class="poster-social-icons">
+              <a href="https://linkedin.com/in/bevin-joy-79ab61335/" target="_blank" rel="noopener noreferrer" class="poster-icon-btn" aria-label="LinkedIn" title="Connect on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.53 1.53 0 1 0 0-3.06 1.53 1.53 0 0 0 0 3.06m1.4 9.74V9.93H5.06v8.57h2.8z"/></svg>
+              </a>
+              <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="poster-icon-btn" aria-label="GitHub" title="GitHub Repositories">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+              </a>
+              <a href="mailto:bevinjoy1019@gmail.com" class="poster-icon-btn" aria-label="Email" title="Send Direct Email">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </a>
+              <a href="tel:9342773656" class="poster-icon-btn" aria-label="Phone" title="Call Direct">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="poster-bottom-center">
+            <div class="poster-mobile-typing">
+              <div class="typing-container">
+                <span class="typing-prefix" aria-hidden="true">✦ </span>
+                <span id="typing-text-mobile">Artificial Intelligence &amp; Pharmaceutical Research</span>
+                <span class="typing-cursor" aria-hidden="true"></span>
+              </div>
+            </div>
+            <a href="assets/Bevin_Joy_Resume.pdf" class="poster-pill-btn" download="Bevin_Joy_G_Resume.pdf" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Resume</span>
+            </a>
+            <a href="#about" class="poster-scroll-btn" aria-label="Explore Portfolio">
+              <span>Explore Portfolio</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 13l5 5 5-5M12 6v12"/></svg>
+            </a>
+          </div>
+
+          <div class="poster-bottom-right">
+            <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="poster-handle-link">
+              <span>github.com/bevinjoy84-pixel</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transition Metrics Strip -->
+      <div class="editorial-metrics-strip">
+        <div class="container">
+          <div class="editorial-metrics-banner">
+            <div class="editorial-metric-col">
+              <div class="editorial-metric-num">3<sup>RD</sup></div>
+              <div class="editorial-metric-label">Year B.Tech Undergraduate &bull; Anna University</div>
+            </div>
+            <div class="editorial-metric-col">
+              <div class="editorial-metric-num">7.5</div>
+              <div class="editorial-metric-label">Cumulative GPA &bull; Faculty of Technology</div>
+            </div>
+            <div class="editorial-metric-col">
+              <div class="editorial-metric-num">04+</div>
+              <div class="editorial-metric-label">Pharma-AI &amp; In-Silico Screening Repositories</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Transition Seam: 00. METRICS -> 01. ABOUT -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">STREAM INITIALIZE</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">01. PROFESSIONAL PROFILE</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">BIOPHARMACEUTICAL ENGINEERING &bull; IN-SILICO AI</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           2. ABOUT ME SECTION
+           ========================================================================== -->
+      <section id="about" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span class="active">01. PROFILE</span>
+              <span>IN-SILICO AI</span>
+              <span>PHARMACOVIGILANCE</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Professional Profile</span>
+            <h2 class="section-title">About <span class="gold-accent">Me</span></h2>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="about-grid">
+            <!-- Narrative Card -->
+            <div class="about-card">
+              <h3 class="about-highlight-header">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                Pioneering Pharma-Tech Innovation
+              </h3>
+              
+              <p class="about-p">
+                I am a dedicated <strong>3rd-year B.Tech Pharmaceutical Technology student</strong> at Shree Venkateshwara Hi-Tech Engineering College (Anna University), focused on bridging classical pharmaceutical formulation with cutting-edge computational intelligence.
+              </p>
+
+              <p class="about-p">
+                My primary research interests span <strong>Artificial Intelligence, In-Silico Drug Discovery, Pharmacovigilance, and Molecular Modeling</strong>. Having established strong working fundamentals in machine learning and bioinformatics, I engineer accessible software tools that support drug-likeness screening, evaluate molecular descriptors, and enhance adverse reaction tracking.
+              </p>
+
+              <p class="about-p">
+                With verified in-plant exposure at the apex <strong>Pasteur Institute of India, Coonoor</strong> (observing DTP vaccine manufacturing and quality testing), commercial industrial training at <strong>SPM Drugs (P) Ltd.</strong> (QA/QC, production and inventory stores), and certified specialized training with <strong>Grad Guru & Executive81</strong> in Pharmacovigilance using AI, I combine strict regulatory compliance with modern algorithmic execution.
+              </p>
+
+              <div class="about-stats-row">
+                <div class="stat-item">
+                  <div class="stat-number">3rd</div>
+                  <div class="stat-label">Academic Year</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">3+</div>
+                  <div class="stat-label">Industrial Programs</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">4+</div>
+                  <div class="stat-label">Pharma-AI Projects</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillars / Core Focus Grid -->
+            <div class="about-pillars">
+              <div class="pillar-card tilt-card">
+                <div class="pillar-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+                </div>
+                <h4 class="pillar-title">AI & Machine Learning</h4>
+                <p class="pillar-desc">Applying predictive algorithms, descriptor classifiers, and exploratory data analysis to evaluate chemical compound viability and receptor affinity.</p>
+              </div>
+
+              <div class="pillar-card tilt-card">
+                <div class="pillar-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                </div>
+                <h4 class="pillar-title">In-Silico Drug Discovery</h4>
+                <p class="pillar-desc">Screening hit candidates using Lipinski's Rule of Five, molecular docking, and SwissADME pharmacokinetic profiles for preliminary bioavailability.</p>
+              </div>
+
+              <div class="pillar-card tilt-card">
+                <div class="pillar-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h4 class="pillar-title">Pharmacovigilance & Safety</h4>
+                <p class="pillar-desc">ADR case reporting, MedDRA dictionary classification, individual case safety reports (ICSR), and adverse reaction risk profiling.</p>
+              </div>
+
+              <div class="pillar-card tilt-card">
+                <div class="pillar-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+                </div>
+                <h4 class="pillar-title">Pharmaceutical Tech & cGMP</h4>
+                <p class="pillar-desc">Vaccine production exposure, sterile cleanroom protocols, quality control/assurance (QA/QC), and strict documentation compliance.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 01. ABOUT -> 02. EDUCATION -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">SECTION ADVANCE</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">02. FORMAL EDUCATION</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">B.TECH PHARMACEUTICAL TECHNOLOGY &bull; ANNA UNIVERSITY</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           3. EDUCATION SECTION
+           ========================================================================== -->
+      <section id="education" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>ACADEMICS</span>
+              <span class="active">02. ANNA UNIVERSITY</span>
+              <span>7.5 CGPA</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Academic Background</span>
+            <h2 class="section-title">Formal <span class="gold-accent">Education</span></h2>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="education-showcase">
+            <div class="edu-royal-card tilt-card">
+              <div class="edu-header-row">
+                <div>
+                  <h3 class="edu-degree-title">B.Tech in Pharmaceutical Technology</h3>
+                  <div class="edu-institution">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <span>Shree Venkateshwara Hi-Tech Engineering College</span>
+                  </div>
+                  <div class="edu-affil">Affiliated to Anna University, Chennai, Tamil Nadu</div>
+                </div>
+                <div class="edu-timeline-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span>2024 – 2028 (Currently in 3rd Year)</span>
+                </div>
+              </div>
+
+              <div class="edu-metrics">
+                <div class="edu-metric-card">
+                  <div class="edu-metric-val">CGPA: 7.5</div>
+                  <div class="edu-metric-lbl">Academic Performance</div>
+                </div>
+                <div class="edu-metric-card">
+                  <div class="edu-metric-val">3rd Year</div>
+                  <div class="edu-metric-lbl">Undergraduate Status</div>
+                </div>
+                <div class="edu-metric-card">
+                  <div class="edu-metric-val">Engineering & Tech</div>
+                  <div class="edu-metric-lbl">Faculty of Technology</div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="edu-modules-title">Core Academic Modules & Research Focus</h4>
+                <div class="edu-chips-wrap">
+                  <span class="edu-chip">Pharmaceutical Engineering</span>
+                  <span class="edu-chip">Medicinal Chemistry</span>
+                  <span class="edu-chip">Bioinformatics</span>
+                  <span class="edu-chip">Pharmacology & Toxicology</span>
+                  <span class="edu-chip">Molecular Modeling & Drug Design</span>
+                  <span class="edu-chip">Pharmacovigilance & Clinical Research</span>
+                  <span class="edu-chip">Pharmaceutical Quality Assurance</span>
+                  <span class="edu-chip">Computational Data Analysis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 02. EDUCATION -> 03. SKILLS -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">CAPABILITY MATRIX</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">03. CORE COMPETENCIES</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">BIOINFORMATICS &bull; MOLECULAR DOCKING &bull; cGMP &bull; ML</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           4. TECHNICAL SKILLS SECTION
+           ========================================================================== -->
+      <section id="skills" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>WET LAB</span>
+              <span class="active">03. BIOINFORMATICS</span>
+              <span>FULL-STACK</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Core Competencies</span>
+            <h2 class="section-title">Technical <span class="gold-accent">Skills</span></h2>
+            <p class="section-description">
+              A balanced repertoire spanning pharmaceutical sciences, wet-lab compliance, in-silico computational tools, and web-based algorithmic programming.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <!-- Skills Filter Tabs -->
+          <div class="skills-filter-nav">
+            <button class="skill-tab-btn active" data-filter="all">All Disciplines</button>
+            <button class="skill-tab-btn" data-filter="pharma">Pharmaceutical Sciences</button>
+            <button class="skill-tab-btn" data-filter="computational">Computational & In-Silico</button>
+            <button class="skill-tab-btn" data-filter="tech">Computer Science & AI</button>
+          </div>
+
+          <!-- Skills Grid -->
+          <div class="skills-grid" id="skills-grid">
+            
+            <!-- Skill 1: Pharmaceutical Technology -->
+            <div class="skill-card" data-category="pharma">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Pharmaceutical Technology</h3>
+                    <span class="badge">Core Domain</span>
+                  </div>
+                </div>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="90%"></div>
+              </div>
+              <p class="skill-desc-text">Formulation principles, industrial dosage forms, aseptic processing, and pharmaceutical unit operations.</p>
+            </div>
+
+            <!-- Skill 2: Bioinformatics -->
+            <div class="skill-card" data-category="computational">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="m17 6-2.5-2.5"/><path d="m14 8-1-1"/><path d="m7 18 2.5 2.5"/><path d="m3.5 14.5.5.5"/><path d="m20 9 .5.5"/><path d="m6.5 12.5 1 1"/><path d="m16.5 10.5 1 1"/><path d="m10 16 1 1"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Bioinformatics</h3>
+                    <span class="badge badge-cyan">In-Silico</span>
+                  </div>
+                </div>
+                <span class="skill-percent">85%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="85%"></div>
+              </div>
+              <p class="skill-desc-text">Biological sequence analysis, structural alignment, macromolecular databases (PDB, UniProt, PubChem).</p>
+            </div>
+
+            <!-- Skill 3: Machine Learning Fundamentals -->
+            <div class="skill-card" data-category="tech">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Machine Learning Fundamentals</h3>
+                    <span class="badge badge-purple">AI / Data</span>
+                  </div>
+                </div>
+                <span class="skill-percent">80%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="80%"></div>
+              </div>
+              <p class="skill-desc-text">Supervised learning, classification for molecular screening, feature extraction, and exploratory analysis.</p>
+            </div>
+
+            <!-- Skill 4: Pharmacovigilance -->
+            <div class="skill-card" data-category="pharma">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Pharmacovigilance</h3>
+                    <span class="badge">Drug Safety</span>
+                  </div>
+                </div>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="88%"></div>
+              </div>
+              <p class="skill-desc-text">Adverse Drug Reaction (ADR) monitoring, MedDRA terminology, ICSR triage, and post-market safety regulations.</p>
+            </div>
+
+            <!-- Skill 5: Drug Discovery -->
+            <div class="skill-card" data-category="pharma">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><path d="M10.4 10.4 6.4 14.4"/><path d="M13.6 13.6 17.6 17.6"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Drug Discovery</h3>
+                    <span class="badge">Therapeutics</span>
+                  </div>
+                </div>
+                <span class="skill-percent">84%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="84%"></div>
+              </div>
+              <p class="skill-desc-text">Target validation, hit-to-lead identification, physicochemical descriptor assessment, and Lipinski compliance.</p>
+            </div>
+
+            <!-- Skill 6: SwissADME -->
+            <div class="skill-card" data-category="computational">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">SwissADME</h3>
+                    <span class="badge badge-cyan">ADMET Profiling</span>
+                  </div>
+                </div>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="88%"></div>
+              </div>
+              <p class="skill-desc-text">Pharmacokinetics, GI absorption, BBB permeation, synthetic accessibility score, and bioavailability radars.</p>
+            </div>
+
+            <!-- Skill 7: Molecular Docking -->
+            <div class="skill-card" data-category="computational">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07 19.07 4.93"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Molecular Docking</h3>
+                    <span class="badge badge-cyan">In-Silico Modeling</span>
+                  </div>
+                </div>
+                <span class="skill-percent">80%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="80%"></div>
+              </div>
+              <p class="skill-desc-text">Receptor-ligand binding affinity evaluation, active-site conformational search, and binding energy analysis.</p>
+            </div>
+
+            <!-- Skill 8: HTML5 -->
+            <div class="skill-card" data-category="tech">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">HTML5</h3>
+                    <span class="badge badge-purple">Frontend</span>
+                  </div>
+                </div>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="88%"></div>
+              </div>
+              <p class="skill-desc-text">Semantic web architecture, responsive layouts, scientific dashboards, and accessible user interfaces.</p>
+            </div>
+
+            <!-- Skill 9: Database Fundamentals -->
+            <div class="skill-card" data-category="tech">
+              <div class="skill-card-top">
+                <div class="skill-meta">
+                  <div class="skill-icon-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                  </div>
+                  <div>
+                    <h3 class="skill-name">Database Fundamentals</h3>
+                    <span class="badge badge-purple">Data Management</span>
+                  </div>
+                </div>
+                <span class="skill-percent">76%</span>
+              </div>
+              <div class="skill-progress-container">
+                <div class="skill-progress-bar" data-progress="76%"></div>
+              </div>
+              <p class="skill-desc-text">Relational schema design, chemical structure datasets (JSON/CSV), compound indexing, and query fundamentals.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 03. SKILLS -> 04. PROJECTS -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">RESEARCH PIPELINES</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">04. FEATURED PROJECTS</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">IN-SILICO SCREENING &bull; REACTION SURVEILLANCE &bull; SWISSADME</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           5. PROJECTS SECTION
+           ========================================================================== -->
+      <section id="projects" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>SWISSADME</span>
+              <span class="active">04. PIPELINES</span>
+              <span>OPEN SOURCE</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Portfolio Showcase</span>
+            <h2 class="section-title">Featured <span class="gold-accent">Projects</span></h2>
+            <p class="section-description">
+              Rigorous, authentic computational projects advancing in-silico drug candidate assessment, pharmacovigilance tracking, and molecular property evaluations.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="projects-grid">
+            
+            <!-- FEATURED PROJECT 1: AI-Based Drug Candidate Screening & Prediction System (With Live Interactive Screener Widget!) -->
+            <div class="project-card featured-project tilt-card">
+              <!-- Left Body -->
+              <div class="project-body">
+                <div>
+                  <div class="project-badge-bar">
+                    <span class="project-num">PROJECT 01 • FLAGSHIP</span>
+                    <span class="badge">In-Silico Screening</span>
+                  </div>
+                  <h3 class="project-title">AI-Based Drug Candidate Screening and Prediction System</h3>
+                  <p class="project-desc">
+                    A web-based drug candidate screening platform using molecular descriptors, Lipinski's Rule of Five, and JavaScript-based prediction logic to support preliminary drug-likeness assessment. Evaluates Molecular Weight (MW), Octanol-Water Partition Coefficient (LogP), Hydrogen Bond Donors (HBD), Hydrogen Bond Acceptors (HBA), and Rotatable Bonds to classify compounds for oral bioavailability.
+                  </p>
+                  
+                  <div class="project-tech-tags">
+                    <span class="tech-tag">JavaScript (ES6+)</span>
+                    <span class="tech-tag">Lipinski's Rule of Five</span>
+                    <span class="tech-tag">Molecular Descriptors</span>
+                    <span class="tech-tag">Physicochemical Analysis</span>
+                    <span class="tech-tag">HTML5 / CSS3</span>
+                  </div>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://ai-drug-screening.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-live">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+                    <span>Launch Live App</span>
+                  </a>
+                  <a href="https://github.com/bevinjoy84-pixel/AI_drug_screening" target="_blank" rel="noopener noreferrer" class="btn-github">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Interactive Screener Widget -->
+              <div class="screener-widget-pane">
+                <div class="screener-header">
+                  <div class="screener-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    <span>Live Lipinski Screener Demo</span>
+                  </div>
+                  <p class="screener-sub">Interactive implementation of Project 1's preliminary screening logic</p>
+                </div>
+
+                <div class="screener-controls-grid">
+                  <div class="screener-preset-row">
+                    <label class="screener-label" for="drug-preset-select">Select Compound Preset:</label>
+                    <select id="drug-preset-select" class="screener-select">
+                      <option value="aspirin">Aspirin (Oral Pass)</option>
+                      <option value="paracetamol">Paracetamol (Oral Pass)</option>
+                      <option value="metformin">Metformin (Oral Pass - Type 2 Diabetes)</option>
+                      <option value="ibuprofen">Ibuprofen (Oral Pass)</option>
+                      <option value="atorvastatin">Atorvastatin (Moderate / High MW)</option>
+                      <option value="remdesivir">Remdesivir (Fails Oral - IV Form)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="screener-label" for="lipinski-mw">MW (g/mol):</label>
+                    <input type="number" id="lipinski-mw" class="screener-input" value="180.16" step="0.1">
+                  </div>
+                  <div>
+                    <label class="screener-label" for="lipinski-logp">LogP (Lipophilicity):</label>
+                    <input type="number" id="lipinski-logp" class="screener-input" value="1.19" step="0.1">
+                  </div>
+                  <div>
+                    <label class="screener-label" for="lipinski-hbd">H-Bond Donors:</label>
+                    <input type="number" id="lipinski-hbd" class="screener-input" value="1" min="0">
+                  </div>
+                  <div>
+                    <label class="screener-label" for="lipinski-hba">H-Bond Acceptors:</label>
+                    <input type="number" id="lipinski-hba" class="screener-input" value="3" min="0">
+                  </div>
+                  <div style="grid-column: 1 / -1;">
+                    <label class="screener-label" for="lipinski-rotb">Rotatable Bonds (Veber's Criteria):</label>
+                    <input type="number" id="lipinski-rotb" class="screener-input" value="2" min="0">
+                  </div>
+                </div>
+
+                <div class="screener-action-row">
+                  <button id="run-lipinski-btn" class="screener-calc-btn">
+                    Execute Drug-Likeness Prediction
+                  </button>
+                </div>
+
+                <div class="screener-output-box">
+                  <div id="lipinski-verdict" class="screener-verdict pass">
+                    <span class="verdict-icon">✓</span> High Oral Drug-Likeness (0 Violations)
+                  </div>
+                  <div id="lipinski-badges" class="screener-badges-grid">
+                    <!-- Populated by JS -->
+                  </div>
+                  <p id="lipinski-summary" class="screener-summary-text">
+                    Optimal physicochemical parameters with favorable predicted gastrointestinal absorption.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 2: AI Pharmacovigilance Dashboard -->
+            <div class="project-card tilt-card">
+              <div class="project-body">
+                <div>
+                  <div class="project-badge-bar">
+                    <span class="project-num">PROJECT 02</span>
+                    <span class="badge badge-purple">Safety & Clinical</span>
+                  </div>
+                  <h3 class="project-title">AI Pharmacovigilance Dashboard</h3>
+                  <p class="project-desc">
+                    An AI-assisted pharmacovigilance dashboard for adverse drug reaction (ADR) reporting, case management, and severity classification. Features structured reporting workflows, MedDRA dictionary classification aids, risk categorization, and triage tracking to accelerate post-marketing drug surveillance.
+                  </p>
+                  
+                  <div class="project-tech-tags">
+                    <span class="tech-tag">Pharmacovigilance</span>
+                    <span class="tech-tag">ADR Reporting</span>
+                    <span class="tech-tag">Severity Classification</span>
+                    <span class="tech-tag">Case Management</span>
+                    <span class="tech-tag">MedDRA Hierarchy</span>
+                  </div>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://github.com/bevinjoy84-pixel/AI-Pharmacoviglance-deshboard" target="_blank" rel="noopener noreferrer" class="btn-github">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- PROJECT 3: SwissADME Drug Analysis -->
+            <div class="project-card tilt-card">
+              <div class="project-body">
+                <div>
+                  <div class="project-badge-bar">
+                    <span class="project-num">PROJECT 03</span>
+                    <span class="badge badge-cyan">Computational PK</span>
+                  </div>
+                  <h3 class="project-title">SwissADME Drug Analysis</h3>
+                  <p class="project-desc">
+                    A computational drug analysis project focusing on physicochemical properties, pharmacokinetics, and drug-likeness evaluation. Evaluates gastrointestinal (GI) absorption, blood-brain barrier (BBB) permeation, P-glycoprotein substrate interactions, cytochrome P450 inhibition profiles, and bioavailability radars.
+                  </p>
+                  
+                  <div class="project-tech-tags">
+                    <span class="tech-tag">SwissADME</span>
+                    <span class="tech-tag">Pharmacokinetics</span>
+                    <span class="tech-tag">GI Absorption</span>
+                    <span class="tech-tag">BBB Permeation</span>
+                    <span class="tech-tag">Bioavailability Radar</span>
+                  </div>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="btn-github">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- BONUS PROJECT: mediqr-ai -->
+            <div class="project-card tilt-card">
+              <div class="project-body">
+                <div>
+                  <div class="project-badge-bar">
+                    <span class="project-num">PROJECT 04</span>
+                    <span class="badge">Healthcare Accessibility</span>
+                  </div>
+                  <h3 class="project-title">mediqr-ai: Multilingual AI Medicine Accessibility</h3>
+                  <p class="project-desc">
+                    A multilingual, AI-powered QR-based medicine information and accessibility platform with voice assistance and a source-backed drug information system, providing patients and pharmacists with instantaneous dosage, safety, and contraindication guidance.
+                  </p>
+                  
+                  <div class="project-tech-tags">
+                    <span class="tech-tag">Healthcare AI</span>
+                    <span class="tech-tag">Multilingual NLP</span>
+                    <span class="tech-tag">QR Integration</span>
+                    <span class="tech-tag">Voice Assistance</span>
+                    <span class="tech-tag">Drug Safety Info</span>
+                  </div>
+                </div>
+
+                <div class="project-actions">
+                  <a href="https://github.com/bevinjoy84-pixel/mediqr-ai" target="_blank" rel="noopener noreferrer" class="btn-github">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 04. PROJECTS -> 05. EXPERIENCE -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">CLINICAL TRAJECTORY</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">05. INDUSTRIAL EXPERIENCE</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">PASTEUR INSTITUTE OF INDIA &bull; SPM DRUGS (P) LTD</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           6. EXPERIENCE SECTION (PROFESSIONAL TIMELINE)
+           ========================================================================== -->
+      <section id="experience" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>PASTEUR INSTITUTE</span>
+              <span class="active">05. INDUSTRIAL</span>
+              <span>SPM DRUGS</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Practical Training</span>
+            <h2 class="section-title">Professional <span class="gold-accent">Experience</span></h2>
+            <p class="section-description">
+              Direct industrial exposure and rigorous certified training across vaccine manufacturing, commercial pharmaceutical plants, and pharmacovigilance safety operations.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="experience-timeline">
+            
+            <!-- Timeline Item 1: Pasteur Institute of India -->
+            <div class="timeline-item">
+              <div class="timeline-node"></div>
+              <div class="timeline-card">
+                <div class="timeline-top-row">
+                  <div>
+                    <h3 class="timeline-role">Vaccine Production & QA/QC Industrial Trainee</h3>
+                    <div class="timeline-org">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                      <span>Pasteur Institute of India (PIIC), Coonoor, The Nilgiris</span>
+                    </div>
+                  </div>
+                  <span class="timeline-badge">15/12/2025 – 31/12/2025</span>
+                </div>
+                <p class="timeline-desc">
+                  Completed industrial internship and hands-on training at one of India's apex vaccine institutes under the Ministry of Health & Family Welfare. Gained comprehensive practical knowledge in sterile vaccine manufacturing, biological QA/QC, and regulatory documentation.
+                </p>
+                <ul class="timeline-highlights-list">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Vaccine Production Workflow:</strong> Observed production and testing procedures for the DTP (Diphtheria, Tetanus, Pertussis) group of vaccines.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Cleanroom & Aseptic Processing:</strong> Class A/B/C/D cleanroom protocols, laminar airflow workstations, and sterilization validation.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>cGMP & Documentation:</strong> Equipment qualification (DQ/IQ/OQ/PQ), batch manufacturing records (BMR), and audit trails.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Quality Assurance & Control:</strong> In-process sterility testing, bioburden assays, endotoxin tests (LAL), and cold-chain compliance.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2: SPM Drugs Pvt. Ltd. -->
+            <div class="timeline-item">
+              <div class="timeline-node"></div>
+              <div class="timeline-card">
+                <div class="timeline-top-row">
+                  <div>
+                    <h3 class="timeline-role">Pharmaceutical In-Plant Industrial Trainee</h3>
+                    <div class="timeline-org">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                      <span>SPM Drugs (P) Ltd., Bhavani</span>
+                    </div>
+                  </div>
+                  <span class="timeline-badge">20.07.2026 – 04.08.2026</span>
+                </div>
+                <p class="timeline-desc">
+                  Immersive 15-day industrial in-plant training at SPM Drugs (P) Ltd., gaining hands-on exposure across commercial drug manufacturing, laboratory quality controls, and warehouse storage operations.
+                </p>
+                <ul class="timeline-highlights-list">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Quality Assurance & Control:</strong> In-process inspection, finished product testing, and batch record reviews in QA/QC labs.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Production Floor Operations:</strong> Solid oral and liquid dosage form manufacturing, mixing, tableting, and packaging lines.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>Raw Material Stores & Inventory:</strong> Material receipt protocols, quarantine management, sampling, and dispensing compliance.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3: Grad Guru -->
+            <div class="timeline-item">
+              <div class="timeline-node"></div>
+              <div class="timeline-card">
+                <div class="timeline-top-row">
+                  <div>
+                    <h3 class="timeline-role">Pharmacovigilance using AI Trainee & Intern</h3>
+                    <div class="timeline-org">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      <span>Grad Guru & Executive81 HR Solutions</span>
+                    </div>
+                  </div>
+                  <span class="timeline-badge">June – July 2026 (2 Months)</span>
+                </div>
+                <p class="timeline-desc">
+                  Comprehensive certified professional training and internship program in Pharmacovigilance with AI integration, covering automated ADR case processing and safety intelligence.
+                </p>
+                <ul class="timeline-highlights-list">
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>ADR Case Intake & Triage:</strong> Evaluation of adverse event reports, serious vs. non-serious event determination, and timeline compliance.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>MedDRA Coding:</strong> Medical Dictionary for Regulatory Activities (SOC, HLGT, HLT, PT, LLT) coding methodology.</span>
+                  </li>
+                  <li>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span><strong>AI in Pharmacovigilance:</strong> Exploring machine learning classifiers for automated severity prediction and signal detection.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 05. EXPERIENCE -> 06. CERTIFICATIONS -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">VERIFIED CREDENTIALS</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">06. CERTIFICATIONS & HONORS</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">ALISON MEDICAL CODING &bull; POWER BI &bull; WHO cGMP</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           7. CERTIFICATIONS & ACHIEVEMENTS SECTION (WITH REAL IMAGES)
+           ========================================================================== -->
+      <section id="certifications" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>GOVT & ACADEMIC</span>
+              <span class="active">06. CREDENTIALS</span>
+              <span>VERIFIED SCANS</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Verified Credentials</span>
+            <h2 class="section-title">Certifications & <span class="gold-accent">Achievements</span></h2>
+            <p class="section-description">
+              Authentic verified certificates and credentials from apex governmental institutes, pharmaceutical manufacturers, and professional training academies.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="certs-grid">
+            
+            <!-- Certificate 1: Pasteur Institute of India -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=pasteur]').click()">
+                <img src="assets/certificates/pasteur_institute_certificate.jpg" alt="Pasteur Institute of India Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">Govt. Institute</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">Vaccine Production & Testing Internship</h3>
+                  <div class="cert-issuer">Pasteur Institute of India (PIIC), Coonoor</div>
+                  <p class="cert-desc">
+                    Govt. of India autonomous institute certification validating observation and training in DTP group vaccine production, sterile cleanrooms, and testing procedures.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge">Dec 2025</span>
+                  <button class="view-cert-btn" data-cert="pasteur">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 2: SPM Drugs Pvt. Ltd. -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=spm]').click()">
+                <img src="assets/certificates/spm_drugs_certificate.jpg" alt="SPM Drugs Pvt. Ltd. In-Plant Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">Industrial Plant</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">In-Plant Pharmaceutical Training & QA/QC</h3>
+                  <div class="cert-issuer">SPM Drugs (P) Ltd., Bhavani</div>
+                  <p class="cert-desc">
+                    Formal in-plant training certificate covering devoted work across Quality Assurance (QA), Quality Control (QC), Production, and Raw Material Stores.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge">Aug 2026</span>
+                  <button class="view-cert-btn" data-cert="spm">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 3: Grad Guru Internship -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=gradguru_internship]').click()">
+                <img src="assets/certificates/gradguru_internship_certificate.jpg" alt="Grad Guru Internship Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">ID: GGCERTIC1509</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">Internship: Pharmacovigilance using AI</h3>
+                  <div class="cert-issuer">Grad Guru & Executive81 HR Solutions</div>
+                  <p class="cert-desc">
+                    Two-month intensive internship program award covering ADR surveillance, case processing, and AI tools in drug safety.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge badge-purple">Two Months</span>
+                  <button class="view-cert-btn" data-cert="gradguru_internship">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 4: Grad Guru Course Completion -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=gradguru_course]').click()">
+                <img src="assets/certificates/gradguru_course_certificate.jpg" alt="Grad Guru Course Completion Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">ID: GGCERTIC1883</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">Course Completion: Pharmacovigilance using AI</h3>
+                  <div class="cert-issuer">Grad Guru Professional Education</div>
+                  <p class="cert-desc">
+                    Accredited certificate of course completion with scannable QR verification, validating competency in MedDRA coding, ICSR, and signal detection.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge badge-cyan">QR Verified</span>
+                  <button class="view-cert-btn" data-cert="gradguru_course">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 5: Alison Medical Billing and Coding -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=alison_coding]').click()">
+                <img src="assets/certificates/alison_medical_coding_certificate.png" alt="Alison Medical Billing and Coding Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">CPD Certified</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">Medical Billing &amp; Coding: ICD 10 and 11</h3>
+                  <div class="cert-issuer">Alison &amp; The CPD Certification Service</div>
+                  <p class="cert-desc">
+                    Accredited certificate validating mastery of ICD-10 and ICD-11 medical coding standards, clinical classifications, and healthcare billing rules.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge badge-purple">CPD Certified</span>
+                  <button class="view-cert-btn" data-cert="alison_coding">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Certificate 6: SkillCourse 30 Days Power BI Micro Course -->
+            <div class="cert-card tilt-card">
+              <div class="cert-thumb-container" onclick="document.querySelector('[data-cert=skillcourse_powerbi]').click()">
+                <img src="assets/certificates/skillcourse_power_bi_certificate.jpg" alt="SkillCourse Power BI Certificate" class="cert-thumb-image" loading="lazy">
+                <div class="cert-thumb-overlay">
+                  <span class="cert-thumb-badge">ISO 9001:2015</span>
+                  <div class="cert-thumb-zoom-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="cert-content">
+                <div>
+                  <h3 class="cert-title">30 Days Power BI Micro Course</h3>
+                  <div class="cert-issuer">SkillCourse (ISO 9001:2015 Certified)</div>
+                  <p class="cert-desc">
+                    ISO-certified completion credential in Microsoft Power BI for healthcare data modeling, dynamic dashboard development, and analytical reporting.
+                  </p>
+                </div>
+                <div class="cert-footer-row">
+                  <span class="badge">Aug 2026</span>
+                  <button class="view-cert-btn" data-cert="skillcourse_powerbi">
+                    <span>View Certificate</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Transition Seam: 06. CERTIFICATIONS -> 07. CONTACT -->
+      <div class="section-transition-seam">
+        <div class="seam-line seam-line-left"></div>
+        <div class="seam-hub">
+          <div class="seam-scanner-glow"></div>
+          <div class="seam-pill">
+            <span class="seam-dot"></span>
+            <span class="seam-tag">COMMUNICATION PORTAL</span>
+            <span class="seam-arrow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+            </span>
+            <span class="seam-next-title">07. DIRECT CONNECT</span>
+          </div>
+          <div class="seam-meta">
+            <span class="seam-diamond">❖</span>
+            <span class="seam-meta-text">INQUIRIES &bull; RESEARCH COLLABORATIONS &bull; GET IN TOUCH</span>
+            <span class="seam-diamond">❖</span>
+          </div>
+        </div>
+        <div class="seam-line seam-line-right"></div>
+      </div>
+
+      <!-- ==========================================================================
+           8. CONTACT SECTION
+           ========================================================================== -->
+      <section id="contact" class="reveal">
+        <div class="container">
+          <div class="section-header">
+            <div class="editorial-step-bar">
+              <span>COMMUNICATION</span>
+              <span class="active">07. INQUIRY</span>
+              <span>DIRECT CHANNELS</span>
+              <span class="checker-icon">❖❖</span>
+            </div>
+            <span class="section-eyebrow">Let's Connect</span>
+            <h2 class="section-title">Get In <span class="gold-accent">Touch</span></h2>
+            <p class="section-description">
+              Open to research collaborations, internship opportunities in pharmaceutical research, AI-drug discovery initiatives, and pharmacovigilance roles.
+            </p>
+            <div class="section-divider"></div>
+          </div>
+
+          <div class="contact-grid">
+            
+            <!-- Contact Left Card -->
+            <div class="contact-info-card">
+              <div>
+                <div class="contact-info-header">
+                  <h3 class="contact-headline">Direct Contact Information</h3>
+                  <p class="contact-subtext">
+                    Feel free to reach out directly via phone, email, or LinkedIn. I am always keen to discuss computational chemistry, pharmaceutical formulation, and machine learning in medicine.
+                  </p>
+                </div>
+
+                <div class="contact-channels-list">
+                  <!-- Phone -->
+                  <div class="contact-channel-item">
+                    <div class="channel-left">
+                      <div class="channel-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      </div>
+                      <div>
+                        <div class="channel-label">Mobile Number</div>
+                        <a href="tel:9342773656" class="channel-value">+91 9342773656</a>
+                      </div>
+                    </div>
+                    <button class="copy-btn" data-copy="9342773656" title="Copy phone number">Copy</button>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="contact-channel-item">
+                    <div class="channel-left">
+                      <div class="channel-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      </div>
+                      <div>
+                        <div class="channel-label">Email Address</div>
+                        <a href="mailto:bevinjoy1019@gmail.com" class="channel-value">bevinjoy1019@gmail.com</a>
+                      </div>
+                    </div>
+                    <button class="copy-btn" data-copy="bevinjoy1019@gmail.com" title="Copy email address">Copy</button>
+                  </div>
+
+                  <!-- LinkedIn -->
+                  <div class="contact-channel-item">
+                    <div class="channel-left">
+                      <div class="channel-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                      </div>
+                      <div>
+                        <div class="channel-label">LinkedIn Profile</div>
+                        <a href="https://linkedin.com/in/bevin-joy-79ab61335/" target="_blank" rel="noopener noreferrer" class="channel-value">linkedin.com/in/bevin-joy-79ab61335</a>
+                      </div>
+                    </div>
+                    <a href="https://linkedin.com/in/bevin-joy-79ab61335/" target="_blank" rel="noopener noreferrer" class="copy-btn">Visit</a>
+                  </div>
+
+                  <!-- GitHub -->
+                  <div class="contact-channel-item">
+                    <div class="channel-left">
+                      <div class="channel-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                      </div>
+                      <div>
+                        <div class="channel-label">GitHub Repository</div>
+                        <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="channel-value">github.com/bevinjoy84-pixel</a>
+                      </div>
+                    </div>
+                    <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="copy-btn">Visit</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="contact-location-bar">
+                <span class="badge">📍 Ooty, The Nilgiris, Tamil Nadu, India &bull; 643004</span>
+              </div>
+            </div>
+
+            <!-- Contact Right Functional Form -->
+            <div class="contact-form-card">
+              <form id="contact-form" autocomplete="on">
+                <div class="form-group">
+                  <label class="form-label" for="name">Your Name *</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="e.g. Dr. Jane Smith" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Your Email Address *</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="e.g. jane.smith@institution.org" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" class="form-input" placeholder="e.g. Research Collaboration / Internship Opportunity">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="message">Your Message *</label>
+                  <textarea id="message" name="message" class="form-textarea" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="form-submit-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  <span>Transmit Inquiry</span>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================================================
+         FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="nav-brand">
+            <div class="brand-crest">
+              <span class="brand-monogram">BJ</span>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">BEVIN JOY G</span>
+              <span class="brand-subtitle">B.Tech Pharmaceutical Technology</span>
+            </div>
+          </div>
+
+          <p class="footer-quote">
+            "Bridging the boundaries between Artificial Intelligence & Pharmaceutical Science."
+          </p>
+
+          <div class="hero-socials">
+            <a href="https://linkedin.com/in/bevin-joy-79ab61335/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://github.com/bevinjoy84-pixel" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </a>
+            <a href="mailto:bevinjoy1019@gmail.com" class="social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>© 2026 BEVIN JOY G. Crafted with Royal Elegance & Precision.</div>
+          <div>Shree Venkateshwara Hi-Tech Engineering College • Anna University</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==========================================================================
+         CERTIFICATE DETAILS MODAL (WITH FULL IMAGE PREVIEW)
+         ========================================================================== -->
+    <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-cert-title">
+      <div class="cert-modal-backdrop" id="cert-modal-backdrop"></div>
+      <div class="cert-modal-dialog">
+        <button class="cert-modal-close" id="cert-modal-close" aria-label="Close modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <span class="modal-cert-badge" id="modal-cert-badge">Credential Detail</span>
+        <h3 class="modal-cert-title" id="modal-cert-title">Certificate Title</h3>
+        <div class="modal-cert-issuer" id="modal-cert-issuer">Issuer Organization</div>
+        <div class="modal-cert-date" id="modal-cert-date">Date</div>
+
+        <!-- High-Resolution Certificate Scan Preview -->
+        <div class="modal-cert-image-preview-wrap">
+          <img id="modal-cert-img" src="" alt="Official Certificate Scan" class="modal-cert-img">
+        </div>
+
+        <div class="modal-cert-actions">
+          <a id="modal-cert-link" href="#" target="_blank" rel="noopener noreferrer" class="modal-open-full-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Open Full Scan in New Tab</span>
+          </a>
+        </div>
+
+        <div class="modal-meta-row">
+          <span>Credential ID / Ref: <strong id="modal-cert-id" style="color: var(--gold-light);">REF-001</strong></span>
+          <span style="color: #4ade80;">● Authentic Verified Document</span>
+        </div>
+
+        <p class="modal-cert-desc" id="modal-cert-desc">
+          Description of certificate curriculum and skills demonstrated.
+        </p>
+
+        <div>
+          <div style="font-size: 12px; font-weight: 600; color: var(--gold-light); text-transform: uppercase; margin-bottom: 8px;">Demonstrated Competencies:</div>
+          <div class="modal-cert-skills" id="modal-cert-skills">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         TOAST NOTIFICATION
+         ========================================================================== -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="toast-message">Notification message</span>
+    </div>
+
+    <!-- ==========================================================================
+         SCROLL TO TOP BUTTON WITH CIRCULAR PROGRESS RING
+         ========================================================================== -->
+    <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Scroll to top of page">
+      <svg class="scroll-progress-svg" viewBox="0 0 44 44">
+        <circle class="scroll-progress-ring" id="scroll-progress-ring" cx="22" cy="22" r="18"/>
+      </svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/particles.js?v=6.0"></script>
+  <script src="js/main.js?v=6.0"></script>
+</body>
+</html>

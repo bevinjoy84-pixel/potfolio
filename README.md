@@ -78,6 +78,10 @@ A luxurious, futuristic, royal-themed personal portfolio website created for **B
 ```
 bevin.portfolio/
 ├── index.html                 # Main portfolio HTML with semantic markup & SEO metadata
+├── Dockerfile                 # Production Nginx Alpine container setup
+├── docker-compose.yml         # One-command container orchestration
+├── nginx.conf                 # Production web server config with Gzip & security headers
+├── .dockerignore              # Clean build context exclusion rules
 ├── css/
 │   └── style.css              # Custom styling, luxury theme, glassmorphism & responsive rules
 ├── js/
@@ -106,7 +110,23 @@ Since this project is built entirely with modern standard **HTML5, CSS3, and Van
    - Open the `bevin.portfolio` folder in VS Code.
    - Right-click `index.html` and click **"Open with Live Server"**.
 
-3. **Option C: Python HTTP Server (Testing)**
+3. **Option C: Docker Container (Production Grade)**
+   - Run with Docker Compose:
+     ```powershell
+     docker compose up -d --build
+     ```
+     Access the site at `http://localhost:8080`.
+   - Or build & run with standard Docker CLI:
+     ```powershell
+     docker build -t bevin-portfolio:latest .
+     docker run -d -p 8080:80 --name bevin-portfolio bevin-portfolio:latest
+     ```
+   - To stop the container:
+     ```powershell
+     docker compose down
+     ```
+
+4. **Option D: Python HTTP Server (Quick local preview)**
    ```powershell
    cd c:\Users\Hp\Downloads\bevin.portfolio
    python -m http.server 3000
